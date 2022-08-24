@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "url": "/images/carousel/carousel_img4.png",
+    "alt": "sustainable fashion"
+  },
+  {
+    "id": 2,
+    "url": "/images/carousel/carousel_img20.jpeg",
+    "alt": "sustainable fashion"
+  },
+  {
+    "id": 3,
+    "url": "/images/carousel/carousel_img9.webp",
+    "alt": "woman posing with a pair of sustainable sneakers on"
+  },
+
+  {
+    "id": 4,
+    "url": "/images/carousel/carousel_img15.jpeg",
+    "alt": "sustainable fashion"
+  },
+
+  {
+    "id": 5,
+    "url": "/images/carousel/carousel_img18.jpeg",
+    "alt": "sustainable fashion"
+  }
+]
