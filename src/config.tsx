@@ -1,4 +1,4 @@
-const URL = 'http://54.149.205.248:3000';
+const URL = 'http://127.0.0.1:8000';
 
 export const API = {
   USER_INFO: `${URL}/users`,
