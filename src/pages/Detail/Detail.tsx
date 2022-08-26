@@ -179,7 +179,7 @@ const Detail = () => {
           <ProjectIntroduce
             title={title}
             introduction={introduction}
-            images={images}
+            image_url={images}
             price={price}
           />
           <ProjectBudget budget_plan={budget_plan} />

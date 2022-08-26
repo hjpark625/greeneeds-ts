@@ -5,14 +5,14 @@ import ProjectOptions from './ProjectOptions';
 interface IntroduceProps {
   title: string;
   introduction: string;
-  images: { id: number; url: string }[];
+  image_url: { id: number; url: string }[];
   price: number;
 }
 
 const ProjectIntroduce = ({
   title,
   introduction,
-  images,
+  image_url,
   price,
 }: IntroduceProps) => {
   return (
@@ -23,7 +23,7 @@ const ProjectIntroduce = ({
         </S.IntroduceTitleBox>
         <S.IntroduceTextBox>
           <S.IntroduceTextSpan>{introduction}</S.IntroduceTextSpan>
-          {images.map(({ url, id }) => {
+          {image_url.map(({ url, id }) => {
             return <S.IntroduceImg src={url} alt="items" key={id} />;
           })}
         </S.IntroduceTextBox>

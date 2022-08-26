@@ -1,14 +1,19 @@
 import React from 'react';
 import ProjectSection from '../ProjectSection/ProjectSection';
 import * as S from './Default.styled';
-import { InfoData } from '../../Post';
+import { Image } from '../../Post';
+
+interface IInfo {
+  title: string;
+  summary: string;
+}
 
 interface DefaultProps {
-  info: InfoData;
-  saveInfo: (e: React.ChangeEvent<HTMLInputElement>, number: boolean) => void;
+  info: IInfo;
+  saveInfo: (e: React.ChangeEvent<HTMLInputElement>, number?: boolean) => void;
   category: number;
   setCategory: React.Dispatch<React.SetStateAction<number>>;
-  setImage: React.Dispatch<React.SetStateAction<{}>>;
+  setImage: React.Dispatch<React.SetStateAction<Image>>;
 }
 
 const Default = ({
@@ -60,7 +65,9 @@ const Default = ({
               type="text"
               placeholder="제목을 입력해주세요"
               name="title"
-              onChange={saveInfo}
+              onChange={e => {
+                saveInfo(e);
+              }}
               value={info.title}
             />
           }
@@ -75,7 +82,9 @@ const Default = ({
               type="text"
               value={info.summary}
               placeholder="제목을 입력해주세요"
-              onChange={saveInfo}
+              onChange={e => {
+                saveInfo(e);
+              }}
             />
           }
         />

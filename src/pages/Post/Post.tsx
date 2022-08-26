@@ -6,29 +6,56 @@ import Default from './components/Default/Default';
 import Funding from './components/Funding/Funding';
 import { API } from '../../config';
 
+export interface Image {
+  lastModified: number;
+  lastModifiedDate?: string;
+  name: string;
+  size: number;
+  type: string;
+  webkitRelativePath: string;
+}
+
 export interface InfoData {
-  category: number | Blob;
+  category: number | string | Blob;
   title: string;
   summary: string;
-  target_amount: number;
-  start_datetime: string;
-  end_datetime: string;
+  target_amount: number | Blob;
+  start_datetime?: string | Blob;
+  end_datetime?: string | Blob;
+  image: Image | Blob;
 }
 
 const Post = () => {
   const navigate = useNavigate();
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [startDate, setStartDate] = useState<string | undefined>('');
+  const [endDate, setEndDate] = useState<string | undefined>('');
   const [category, setCategory] = useState(1);
-  const [image, setImage] = useState({});
+  const [image, setImage] = useState<Image>({
+    lastModified: 0,
+    lastModifiedDate: '',
+    name: '',
+    size: 0,
+    type: '',
+    webkitRelativePath: '',
+  });
   const [info, setInfo] = useState<InfoData>({
-    category: 1,
+    category: '',
     title: '',
     summary: '',
     target_amount: 0,
     start_datetime: '',
     end_datetime: '',
+    image: {
+      lastModified: 0,
+      lastModifiedDate: '',
+      name: '',
+      size: 0,
+      type: '',
+      webkitRelativePath: '',
+    },
   });
+
+  console.log(image);
 
   useEffect(() => {
     setInfo({
@@ -42,7 +69,7 @@ const Post = () => {
 
   const saveInfo = (
     e: React.ChangeEvent<HTMLInputElement>,
-    number: boolean
+    number?: boolean
   ) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: number ? Number(value) : value });
@@ -51,13 +78,13 @@ const Post = () => {
   const token = localStorage.getItem('token');
   const sendAllInfo = async () => {
     const formData = new FormData();
-    formData.append('category', info.category);
+    formData.append('category', info.category.toString());
     formData.append('title', info.title);
     formData.append('summary', info.summary);
-    formData.append('target_amount', info.target_amount);
-    formData.append('start_datetime', info.start_datetime);
-    formData.append('end_datetime', info.end_datetime);
-    formData.append('formData', image);
+    formData.append('target_amount', info.target_amount.toString());
+    formData.append('start_datetime', info.start_datetime!);
+    formData.append('end_datetime', info.end_datetime!);
+    formData.append('formData', image.toString());
 
     const headers = {
       Authorization: `${token}`,
@@ -97,8 +124,6 @@ const Post = () => {
           path="/funding"
           element={
             <Funding
-              info={info}
-              setInfo={setInfo}
               saveInfo={saveInfo}
               setStartDate={setStartDate}
               setEndDate={setEndDate}

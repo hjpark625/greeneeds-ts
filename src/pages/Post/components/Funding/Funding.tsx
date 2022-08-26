@@ -6,32 +6,44 @@ import Dates from '../Dates/Dates';
 
 interface FundingProps {
   saveInfo: (e: React.ChangeEvent<HTMLInputElement>, number: boolean) => void;
-  setStartDate: React.Dispatch<React.SetStateAction<string>>;
-  setEndDate: React.Dispatch<React.SetStateAction<string>>;
+  setStartDate: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setEndDate: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const Funding = ({ saveInfo, setStartDate, setEndDate }: FundingProps) => {
-  const [inputValue, setInputValue] = useState(0);
+  const [inputValue, setInputValue] = useState<string | number>(0);
 
-  const totalPrice = Math.floor(inputValue * 0.92).toLocaleString('ko-KR', {
-    style: 'currency',
-    currency: 'KRW',
-  });
+  const totalPrice = Math.floor(Number(inputValue) * 0.92).toLocaleString(
+    'ko-KR',
+    {
+      style: 'currency',
+      currency: 'KRW',
+    }
+  );
 
-  const totalCharge = Math.floor(inputValue * 0.08).toLocaleString('ko-KR', {
-    style: 'currency',
-    currency: 'KRW',
-  });
+  const totalCharge = Math.floor(Number(inputValue) * 0.08).toLocaleString(
+    'ko-KR',
+    {
+      style: 'currency',
+      currency: 'KRW',
+    }
+  );
 
-  const payCharge = Math.floor(inputValue * 0.03).toLocaleString('ko-KR', {
-    style: 'currency',
-    currency: 'KRW',
-  });
+  const payCharge = Math.floor(Number(inputValue) * 0.03).toLocaleString(
+    'ko-KR',
+    {
+      style: 'currency',
+      currency: 'KRW',
+    }
+  );
 
-  const platformCharge = Math.floor(inputValue * 0.05).toLocaleString('ko-KR', {
-    style: 'currency',
-    currency: 'KRW',
-  });
+  const platformCharge = Math.floor(Number(inputValue) * 0.05).toLocaleString(
+    'ko-KR',
+    {
+      style: 'currency',
+      currency: 'KRW',
+    }
+  );
 
   return (
     <S.FundingWrap>

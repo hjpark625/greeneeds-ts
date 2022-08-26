@@ -2,7 +2,11 @@ import React from 'react';
 import TitleButton from './components/TitleButton/TitleButton';
 import * as S from './PostMain.styled';
 
-const PostMain = ({ sendAllInfo }) => {
+interface PostMainProps {
+  sendAllInfo: () => void;
+}
+
+const PostMain = ({ sendAllInfo }: PostMainProps) => {
   return (
     <>
       <S.SaveButtonWrap>

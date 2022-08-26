@@ -2,9 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './TitleButton.styled';
 
-const TitleButton = ({ title, address }) => {
+interface TitleButtonProps {
+  title: string;
+  address: string;
+}
+
+const TitleButton = ({ title, address }: TitleButtonProps) => {
   const navigate = useNavigate();
-  const goToSite = path => {
+  const goToSite = (path: string) => {
     navigate(path);
   };
 
