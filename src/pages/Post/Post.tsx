@@ -55,8 +55,6 @@ const Post = () => {
     },
   });
 
-  console.log(image);
-
   useEffect(() => {
     setInfo({
       ...info,
