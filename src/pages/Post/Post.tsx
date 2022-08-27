@@ -30,7 +30,8 @@ const Post = () => {
   const [startDate, setStartDate] = useState<string | undefined>('');
   const [endDate, setEndDate] = useState<string | undefined>('');
   const [category, setCategory] = useState(1);
-  const [image, setImage] = useState<Image>({
+  // TODO: image 타입 Blob형식으로 바꿔야함
+  const [image, setImage] = useState<any>({
     lastModified: 0,
     lastModifiedDate: '',
     name: '',
@@ -82,7 +83,7 @@ const Post = () => {
     formData.append('target_amount', info.target_amount.toString());
     formData.append('start_datetime', info.start_datetime!);
     formData.append('end_datetime', info.end_datetime!);
-    formData.append('formData', image.toString());
+    formData.append('formData', image);
 
     const headers = {
       Authorization: `${token}`,
